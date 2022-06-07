@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Login() {
       <button onClick={onBackClick}>
         <p>Ingresar</p>
       </button>
+      <Link to={'/register'}><h4>No sos usuario de BuqueAlToque? Registrate ahora!</h4></Link>
     </div>
   );
 }
