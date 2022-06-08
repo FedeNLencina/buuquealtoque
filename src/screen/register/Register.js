@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import users from '../../data/users';
 
 export default function Register(props) {
     const navigate = useNavigate();
@@ -8,6 +10,11 @@ export default function Register(props) {
       e.preventDefault();
       navigate("/login");
     };
+
+    const agregarEmail = (e) => {
+      e.preventDefault();
+      users.push(e.target.value);
+    }
   
     return (
       <div>
@@ -46,7 +53,7 @@ export default function Register(props) {
         </select>
         <label>
             Email:
-            <input placeholder="email" />
+            <input onChange={agregarEmail} placeholder="email" />
         </label>
         <button onClick={onBackClick}>
           <p>Registrar</p>

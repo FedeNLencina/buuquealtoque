@@ -58,8 +58,7 @@ function Search() {
           onChange={(event) => setDestino(event.target.value)}
         >
           <option selected>Destinos</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Mexico">Mexico</option>
+          <option value="Uruguay">Uruguay</option>
           <option value="Argentina">Argentina</option>
         </select>
 
@@ -103,6 +102,7 @@ function Search() {
           <option value="Desayuno">Desayuno</option>
           <option value="Excursion">Excursion</option>
           <option value="Estadia">Estadia</option>
+          <option value="Estadia">FreeShop</option>
         </select>
 
         {/* <div class="form-check">
