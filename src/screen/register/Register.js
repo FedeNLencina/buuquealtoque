@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import users from '../../data/users';
+
 
 export default function Register(props) {
     const navigate = useNavigate();
     const onBackClick = (e) => {
       e.preventDefault();
-      navigate("/login");
+      navigate("/");
     };
 
     const agregarEmail = (e) => {
       e.preventDefault();
-      users.push(e.target.value);
     }
   
     return (

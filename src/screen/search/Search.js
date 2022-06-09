@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 function Search() {
   const [destino, setDestino] = useState(null);
@@ -105,19 +106,6 @@ function Search() {
           <option value="Estadia">FreeShop</option>
         </select>
 
-        {/* <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckChecked"
-            checked
-          />
-          <label class="form-check-label" for="flexCheckChecked">
-            Checked checkbox
-          </label>
-        </div> */}
-
         <button onClick={handlerButtom} className="btn btn-primary">
           Buscar
         </button>
@@ -130,27 +118,14 @@ function Search() {
               <p class="card-text">
                 {`${item.producto} fecha: ${item.fecha} cantidad de personas: ${item.cantidad}`}
               </p>
-              <a href="#" class="btn btn-primary">
-                Go somewhere
-              </a>
+              <Link to={'/booking'}>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
+              </Link>
             </div>
           </div>
         )}
-
-        {/* {items?.map((item) => (
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">{item.destino}</h5>
-              <p class="card-text">
-                {`${item.producto} fecha: ${item.fecha} cantidad de personas: ${item.cantidad}`}
-              </p>
-              <a href="#" class="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-        ))} */}
       </div>
     </div>
   );
