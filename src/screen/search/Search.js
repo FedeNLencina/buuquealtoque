@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import NavBar from "../../components/NavBar";
+
 
 function Search() {
   const [destino, setDestino] = useState(null);
@@ -52,6 +54,7 @@ function Search() {
 
   return (
     <div>
+      <NavBar/>
       <div>
         <select
           class="form-select"
