@@ -1,0 +1,24 @@
+.mainBooking{
+    background-image: url("../../images/camara.jpg");
+    background-position: 50%;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.searchContainer{
+    background-color: rgba(240, 248, 255, 0.826);
+box-shadow: 1px 0px 22px 2px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 0px 22px 2px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 0px 22px 2px rgba(0,0,0,0.75);
+    width: 30%;
+}
+
+.textoRegistrar{
+    width:100%;
+}
+
+.boton{
+    height: 40px;
+}

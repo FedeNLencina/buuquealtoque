@@ -1,0 +1,44 @@
+.mainSearch{
+    background-image: url("../../images/mar.jpg");
+    background-position: 50%;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    
+}
+
+.searchContainer{
+    background-color: rgba(240, 248, 255, 0.542);
+box-shadow: 1px 0px 22px 2px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 0px 22px 2px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 0px 22px 2px rgba(0,0,0,0.75);
+    width: 30%;
+}
+
+.products{
+    width:80%
+}
+
+.pasaje{
+    width: 80%;
+}
+
+.excursion{
+    width: 80%;
+}
+
+.fecha{
+    width: 80%;
+}
+
+.cantPersonas{
+    width: 80%;
+}
+
+.horario{
+    width: 80%;
+}
+
+.boton {
+    width: 50%;
+}
