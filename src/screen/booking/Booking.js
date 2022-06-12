@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import NavBar from "../../components/NavBar";
 export default function Booking() {
   const [acompañante, setAcompañante] = useState(null);
   const [tipoPasajero, setTipoPasajero] = useState(null);
@@ -10,6 +10,7 @@ export default function Booking() {
   const [acompañado, setAcompañado] = useState(null);
   const [cantidad, setCantidad] = useState(null);
   const [medioPago, setMedioPago] = useState(null);
+  const [reservado, setReservado] = useState(false);
 
   const reservaExitosa = (e) => {
     e.preventDefault();
@@ -55,7 +56,9 @@ export default function Booking() {
       alert(
         "Reserva exitosa. Se enviaron los detalles de la reserva y un archivo adjunto que contenga la tarjeta de embarque via mail."
       );
+      setReservado(true);
     }, 5000);
+    
   };
 
   const reservaCancelada = (e) => {
@@ -72,100 +75,111 @@ export default function Booking() {
     }
   };
 
-  const reservaBodega = (e) => {
-    e.preventDefault();
-    alert("Se ha realizado la reserva");
-  };
+  // const reservaBodega = (e) => {
+  //   e.preventDefault();
+  //   alert("Se ha realizado la reserva");
+  // };
 
-  const reservaProductoFree = (e) => {
-    e.preventDefault();
-    alert("Se ha realizado la reserva");
-  };
+  // const reservaProductoFree = (e) => {
+  //   e.preventDefault();
+  //   alert("Se ha realizado la reserva");
+  // };
 
   return (
-    <div>
-      <select
-        class="form-select"
-        aria-label="Default select example"
-        onChange={(event) => setRegistrado(event.target.value)}
-      >
-        <option selected>Se encuentra registrado?</option>
-        <option value="true">Si</option>
-        <option value="false">No</option>
-      </select>
-      <Link to={"/register"}>
-        <h4>Si no se encuentra registrado, registrese ahora!</h4>
-      </Link>
-
-      <label>
-        Es su primer compra? Registre sus acompañantes para sugerirselos en sus
-        proximas reservas!
-        <input
-          onChange={(event) => setAcompañante(event.target.value)}
-          placeholder="Ingrese el nombre"
-        />
-        <button onClick={registrarAcompañante}>
-          <p>Registrar acompañantes</p>
-        </button>
-      </label>
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Agregar acompañantes anteriores a la reserva?</option>
-        <option value="Si">Si</option>
-        <option value="No">No</option>
-      </select>
-      <select
-        class="form-select"
-        aria-label="Default select example"
-        onChange={(event) => setCantidad(event.target.value)}
-      >
-        <option selected value="Cantidad de personas">Cantidad de personas:</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-      </select>
-
-      <select
-        class="form-select"
-        aria-label="Default select example"
-        onChange={(event) => setTipoPasajero(event.target.value)}
-      >
-        <option selected value="Tipo acompañante">Tipo de acompañante</option>
-        <option value="Adulto">Adulto</option>
-        <option value="Niño">Niño</option>
-        <option value="Discapacitado">Discapacitado</option>
-      </select>
-      {tipoPasajero === "Discapacitado" ? (
+    <>
+      <NavBar />
+      <div>
         <select
           class="form-select"
           aria-label="Default select example"
-          onChange={(event) => setAcompañado(event.target.value)}
+          onChange={(event) => setRegistrado(event.target.value)}
         >
-          <option selected>
-            Se encuentra acompañado por un adulto responsable?
-          </option>
-          <option value="Acompañado">Si</option>
-          <option value="NoAcompañado">No</option>
+          <option selected>Se encuentra registrado?</option>
+          <option value="true">Si</option>
+          <option value="false">No</option>
         </select>
-      ) : (
-        <></>
-      )}
-      <select class="form-select" aria-label="Default select example"
-        onChange={(event) => setMedioPago(event.target.value)}>
-        <option selected>Medio de pago</option>
-        <option value="Tarjeta">Tarjeta de credito</option>
-        <option value="Mercado Pago">Mercado pago</option>
-        <option value="Cuenta Bancaria">Cuenta bancaria</option>
-        <option value="No registro pago">Aun no registre mi cuenta</option>
-      </select>
+        <Link to={"/register"}>
+          <h4>Si no se encuentra registrado, registrese ahora!</h4>
+        </Link>
 
-      <select
+        <label>
+          Es su primer compra? Registre sus acompañantes para sugerirselos en
+          sus proximas reservas!
+          <input
+            onChange={(event) => setAcompañante(event.target.value)}
+            placeholder="Ingrese el nombre"
+          />
+          <button onClick={registrarAcompañante}>
+            <p>Registrar acompañantes</p>
+          </button>
+        </label>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>
+            Agregar acompañantes anteriores a la reserva?
+          </option>
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select>
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          onChange={(event) => setCantidad(event.target.value)}
+        >
+          <option selected value="Cantidad de personas">
+            Cantidad de personas:
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          onChange={(event) => setTipoPasajero(event.target.value)}
+        >
+          <option selected value="Tipo acompañante">
+            Tipo de acompañante
+          </option>
+          <option value="Adulto">Adulto</option>
+          <option value="Niño">Niño</option>
+          <option value="Discapacitado">Discapacitado</option>
+        </select>
+        {tipoPasajero === "Discapacitado" ? (
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            onChange={(event) => setAcompañado(event.target.value)}
+          >
+            <option selected>
+              Se encuentra acompañado por un adulto responsable?
+            </option>
+            <option value="Acompañado">Si</option>
+            <option value="NoAcompañado">No</option>
+          </select>
+        ) : (
+          <></>
+        )}
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          onChange={(event) => setMedioPago(event.target.value)}
+        >
+          <option selected>Medio de pago</option>
+          <option value="Tarjeta">Tarjeta de credito</option>
+          <option value="Mercado Pago">Mercado pago</option>
+          <option value="Cuenta Bancaria">Cuenta bancaria</option>
+          <option value="No registro pago">Aun no registre mi cuenta</option>
+        </select>
+
+        {/* <select
         class="form-select"
         aria-label="Default select example"
         onChange={(event) => setBodega(event.target.value)}
@@ -191,9 +205,9 @@ export default function Booking() {
         </button>
       ) : (
         <></>
-      )}
+      )} */}
 
-      <select
+        {/* <select
         class="form-select"
         aria-label="Default select example"
         onChange={(event) => setFreeshop(event.target.value)}
@@ -219,15 +233,15 @@ export default function Booking() {
         </button>
       ) : (
         <></>
-      )}
+      )} */}
 
-      <button onClick={reservaExitosa}>
-        <p>Reservar</p>
-      </button>
-
-      <button onClick={reservaCancelada}>
-        <p>Cancelar</p>
-      </button>
-    </div>
+        <button onClick={reservaExitosa}>
+          <p>Reservar</p>
+        </button>
+        {reservado === true ? <button onClick={reservaCancelada}>
+          <p>Cancelar</p>
+        </button> : <></> } 
+      </div>
+    </>
   );
 }

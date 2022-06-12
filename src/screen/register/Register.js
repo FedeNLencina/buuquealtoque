@@ -16,41 +16,40 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function Register() {
   const [value, setValue] = React.useState([null, null]);
-  const [medioDePago, setmedioDePago] = React.useState('');
-
+  const [medioDePago, setmedioDePago] = React.useState("");
+  //[A-Z]{1}[a-z]{1,14} regexnombre
   const handleChange = (e) => {
     e.preventDefault();
-    setmedioDePago(e);    
-  }
+    setmedioDePago(e);
+  };
 
   const navigate = useNavigate();
   const onBackClick = (e) => {
     e.preventDefault();
-    navigate("&home");
+    navigate("/");
   };
 
   const agregarEmail = (e) => {
     e.preventDefault();
-
-  }
+  };
   return (
     <Box
       onSubmit={onBackClick}
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
     >
       <div>
         <TextField
-        type='text'
+          type="text"
           id="outlined-error"
           label="Nombre"
           placeholder="Ingrese nombre"
           required
         />
         <TextField
-          type='text'
+          type="text"
           id="outlined-error-helper-text"
           label="Apellido"
           placeholder="Ingrese apellido"
@@ -59,24 +58,19 @@ export default function Register() {
       </div>
       <div>
         <TextField
-         
           id="filled-error"
           label="DNI"
           placeholder="Ingrese dni"
-         
           required
         />
         <TextField
-
           id="filled-error-helper-text"
           label="Domicilio"
           placeholder="Ingrese domicilio"
-          
           required
         />
       </div>
       <div>
-
         <LocalizationProvider required dateAdapter={AdapterDateFns}>
           <DatePicker
             label="Basic example"
@@ -90,7 +84,7 @@ export default function Register() {
         </LocalizationProvider>
       </div>
       <div>
-        <FormControl sx={{width:'30%'}}>
+        <FormControl sx={{ width: "30%" }}>
           <InputLabel id="demo-simple-select-label">Medio de Pago</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -99,15 +93,15 @@ export default function Register() {
             required
             onChange={handleChange}
           >
-            <MenuItem value={'Tarjeta de credito'}>Tarjeta de credito</MenuItem>
-            <MenuItem value={'Mercado pago'}>Mercado pago</MenuItem>
-            <MenuItem value={'Cuenta bancaria'}>Cuenta bancaria</MenuItem>
+            <MenuItem value={"Tarjeta de credito"}>Tarjeta de credito</MenuItem>
+            <MenuItem value={"Mercado pago"}>Mercado pago</MenuItem>
+            <MenuItem value={"Cuenta bancaria"}>Cuenta bancaria</MenuItem>
           </Select>
         </FormControl>
       </div>
       <div>
         <TextField
-          type='email'
+          type="email"
           id="standard-error-helper-text"
           label="Email"
           onChange={agregarEmail}
@@ -116,7 +110,9 @@ export default function Register() {
           variant="standard"
         />
       </div>
-      <Button type='submit' variant="contained">Registrarme</Button>
+      <Button type="submit" variant="contained">
+        Registrarme
+      </Button>
     </Box>
   );
 }
