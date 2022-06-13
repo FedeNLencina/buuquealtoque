@@ -27,11 +27,11 @@ export default function Login() {
     e.preventDefault();
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const validatePassword =
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+      /^(?=.*[0-9])((?=.*[a-z])||(?=.*[A-Z]))[a-zA-Z0-9]{8,}$/;
     // /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
     
     if (!validatePassword.test(password)) {
-      alert("Password debe tener minimo una letra, un numero y un caracter especial");
+      alert("Password debe tener minimo una letra y un numero");
       return;
     }
     if (!regexEmail.test(email)) {

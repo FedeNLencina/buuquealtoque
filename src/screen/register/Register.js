@@ -24,6 +24,8 @@ export default function Register() {
   const [apellido, setApellido] = useState(null);
   const [dni, setDni] = useState(null);
   const [domicilio, setDomicilio] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [fecha, setFecha] = useState(null);
   
   const handleChange = (e) => {
     e.preventDefault();
@@ -33,19 +35,25 @@ export default function Register() {
   const navigate = useNavigate();
   const onBackClick = (e) => {
     e.preventDefault();
-    const validateName = /^[A-Z][a-z]{1,13}$/;
+    const validateName = /^[A-Z][a-z\sA-Za-z]{1,30}$/;
     const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const validateDNI = /^[0-9]{8}$/;
     const validateAddress = /^[A-Z][0-9a-z\sA-Z\.]+$/;
+    const validatePassword =
+      /^(?=.*[0-9])((?=.*[a-z])||(?=.*[A-Z]))[a-zA-Z0-9]{8,}$/;
+    if (!fecha) {
+      alert("Debe seleccionar su fecha");
+      return;
+    }
     if (!validateName.test(nombre)) {
       alert(
-        "Ingrese un nombre valido sin numeros, caracteres especiales y un maximo de 15 letras"
+        "El nombre debe contener una mayuscula como minimo y debe serentre 6 y 30 caracteres"
       );
       return;
     }
     if (!validateName.test(apellido)) {
       alert(
-        "Ingrese un apellido valido sin numeros, caracteres especiales y un maximo de 15 letras"
+        "El nombre debe contener una mayuscula como minimo y debe serentre 6 y 30 caracteres"
       );
       return;
     }
@@ -55,12 +63,19 @@ export default function Register() {
       );
       return;
     }
+    if (!validatePassword.test(password)) {
+      alert("Password debe tener minimo una letra y un numero");
+      return;
+    }
     if (!validateDNI.test(dni)) {
       alert("Ingrese un dni valido");
       return;
     }
     if (!validateAddress.test(domicilio)) {
       alert("Ingrese una direccion valida");
+      return;
+    } if (!medioDePago || medioDePago === "vacio") {
+      alert("Debe ingresar un medio de pago");
       return;
     }
     navigate("/");
@@ -114,18 +129,19 @@ export default function Register() {
               onChange={(event) => setDomicilio(event.target.value)}
             />
           </div>
-          <div className="d-flex justify-content-center">
-            <LocalizationProvider required dateAdapter={AdapterDateFns}>
-              <DatePicker
-                label="Basic example"
-                value={value}
-                required
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
+          <div className="container fecha d-flex flex-column justify-content-center my-2">
+            <label for="start" className="text-center">
+              Fecha:
+            </label>
+            <input
+              onChange={(event) => setFecha(event.target.value)}
+              className="text-center"
+              type="date"
+              id="start"
+              name="trip-start"
+              min="1922-01-01"
+              max="2004-12-31"
+            />
           </div>
           <div className="d-flex justify-content-center">
             <select
@@ -133,7 +149,7 @@ export default function Register() {
               aria-label="Default select example"
               onChange={(event) => setMedioPago(event.target.value)}
             >
-              <option selected className="text-center">
+              <option selected className="text-center" value="vacio">
                 Medio de pago
               </option>
               <option value="Tarjeta" className="text-center">
@@ -156,6 +172,16 @@ export default function Register() {
               placeholder="Ingrese email"
               required
               variant="standard"
+            />
+          </div>
+          <div className="d-flex justify-content-center">
+            <TextField
+              label="Password"
+              required
+              id="outlined-start-adornment"
+              sx={{ width: "25ch" }}
+              fullWidth
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
           <div className="d-flex justify-content-center">

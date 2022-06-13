@@ -160,8 +160,8 @@ function Search() {
                 type="date"
                 id="start"
                 name="trip-start"
-                min="2022-07-01"
-                max="2022-12-31"
+                min="2022-06-14"
+                max="2022-12-14"
               />
             </div>
           ) : (
@@ -180,8 +180,8 @@ function Search() {
                 type="date"
                 id="start"
                 name="trip-start"
-                min="2022-07-01"
-                max="2022-12-31"
+                min="2022-06-14"
+                max="2022-12-14"
               />
             </div>
           ) : (
@@ -404,6 +404,7 @@ function Search() {
                       <p class="card-text">{`${item.producto} `}</p>
                       <p class="card-text">{`Fecha: ${item.fecha}`}</p>
                       <p class="card-text">{`Cantidad de personas: ${item.cantidad}`}</p>
+                      <p class="card-text">{`Horario: ${item.horario}`}</p>
                       <Link to={"/booking"}>
                         <a href="#" class="btn btn-primary">
                           Reservar

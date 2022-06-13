@@ -8,16 +8,13 @@ export default function Booking() {
   const [tipoPasajero, setTipoPasajero] = useState(null);
   const [registrado, setRegistrado] = useState(null);
   const [acompañado, setAcompañado] = useState(null);
+   const [acompañanteAnterior, setAcompañanteAnterior] = useState(null);
   const [cantidad, setCantidad] = useState(null);
   const [medioPago, setMedioPago] = useState(null);
   const [reservado, setReservado] = useState(false);
 
   const reservaExitosa = (e) => {
     e.preventDefault();
-    if (registrado === "false") {
-      alert("Para realizar la reserva debe estar registrado");
-      return;
-    }
     if (acompañado === "Si") {
      if (!cantidad || cantidad === "Cantidad de personas") {
        alert("Se deben seleccionar todos los campos");
@@ -33,10 +30,6 @@ export default function Booking() {
      }
     }
     
-    if (!registrado) {
-      alert("Se deben seleccionar todos los campos");
-      return;
-    }
     if (!medioPago) {
       alert("Se deben seleccionar todos los campos");
       return;
@@ -44,6 +37,10 @@ export default function Booking() {
     if (medioPago === "No registro pago") {
       alert("Se debe registrar el medio de pago antes de poder reservar un producto");
       return;
+    }
+    if (acompañanteAnterior === "vacio" || medioPago === "vacio") {
+       alert("Se deben seleccionar todos los campos");
+       return;
     }
     setTimeout(function () {
       alert(
@@ -62,9 +59,11 @@ export default function Booking() {
 
   const registrarAcompañante = (e) => {
     e.preventDefault();
-    const validateName = /^[A-Z][a-z]{1,13}$/;
+    const validateName = /^[A-Z][a-z\sA-Za-z]{1,30}$/;
     if (!validateName.test(acompañante)) {
-      alert("Ingrese un nombre valido sin numeros, caracteres especiales y un maximo de 15 letras");
+      alert(
+        "El nombre debe contener una mayuscula como minimo y debe serentre 6 y 30 caracteres"
+      );
     }
     else {
       alert("Se han registrados los acompañantes");
@@ -77,30 +76,6 @@ export default function Booking() {
       <NavBar />
       <div className="mainBooking ">
         <div className="container searchContainer p-5 ">
-          <div className="container options my-3">
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              onChange={(event) => setRegistrado(event.target.value)}
-            >
-              <option selected className="text-center">
-                Se encuentra registrado?
-              </option>
-              <option value="true" className="text-center">
-                Si
-              </option>
-              <option value="false" className="text-center">
-                No
-              </option>
-            </select>
-          </div>
-          <div className="container options my-3">
-            <Link to={"/register"}>
-              <p className="text-center my-3">
-                Si no se encuentra registrado, registrese ahora!
-              </p>
-            </Link>
-          </div>
           <div className="d-flex justify-content-center container  my-3">
             <label className="text-center">
               Es su primer compra? Registre sus acompañantes para sugerirselos
@@ -123,8 +98,12 @@ export default function Booking() {
             </button>
           </div>
           <div className="d-flex justify-content-center container options my-3">
-            <select class="form-select" aria-label="Default select example">
-              <option selected className="text-center">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              onChange={(event) => setAcompañanteAnterior(event.target.value)}
+            >
+              <option selected className="text-center" value="vacio">
                 Agregar acompañantes anteriores a la reserva?
               </option>
               <option value="Si" className="text-center">
@@ -141,7 +120,7 @@ export default function Booking() {
               aria-label="Default select example"
               onChange={(event) => setAcompañado(event.target.value)}
             >
-              <option selected className="text-center">
+              <option selected className="text-center" value="vacio">
                 Desea agregar nuevos acompañantes a esta compra?
               </option>
               <option value="Si" className="text-center">
@@ -257,7 +236,7 @@ export default function Booking() {
               aria-label="Default select example"
               onChange={(event) => setMedioPago(event.target.value)}
             >
-              <option selected className="text-center">
+              <option selected className="text-center" value="vacio">
                 Medio de pago
               </option>
               <option value="Tarjeta" className="text-center">
@@ -268,9 +247,6 @@ export default function Booking() {
               </option>
               <option value="Cuenta Bancaria" className="text-center">
                 Cuenta bancaria
-              </option>
-              <option value="No registro pago" className="text-center">
-                Aun no registre mi cuenta
               </option>
             </select>
           </div>
