@@ -208,28 +208,6 @@ export default function Booking() {
           ) : (
             <></>
           )}
-
-          {tipoPasajero === "Discapacitado" ? (
-            <div className="d-flex justify-content-center container options my-3">
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                onChange={(event) => setAcompañado(event.target.value)}
-              >
-                <option selected className="text-center">
-                  Se encuentra acompañado por un adulto responsable?
-                </option>
-                <option value="Acompañado" className="text-center">
-                  Si
-                </option>
-                <option value="NoAcompañado" className="text-center">
-                  No
-                </option>
-              </select>
-            </div>
-          ) : (
-            <></>
-          )}
           <div className="d-flex justify-content-center container options my-3">
             <select
               class="form-select"
